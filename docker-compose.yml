@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8001:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=gpt-4o-mini
+      - MAX_HISTORY_MESSAGES=20
+      - SESSION_TTL_HOURS=24
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
